@@ -3,7 +3,7 @@ name: Terraform Deploy S3
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
         run: terraform plan -var-file=terraform.tfvars
 
       - name: Aplicar plano Terraform
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         run: terraform apply -auto-approve -var-file=terraform.tfvars
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
